@@ -98,3 +98,4 @@ dist
 hs_err_pid*
 *.xml
 *.iml
+.idea/inspectionProfiles/profiles_settings.xml
