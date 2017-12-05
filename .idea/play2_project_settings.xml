@@ -3,6 +3,13 @@
   <component name="Play2ExcludedModulesSettings">
     <option name="INFO">
       <map>
+        <entry key="play-java-jpa-example">
+          <value>
+            <ProjectSettingsEntry>
+              <option name="playDistrPath" value="$USER_HOME$/.ivy2/cache/com.typesafe.play/play_2.12/jars/play_2.12-2.6.3.jar" />
+            </ProjectSettingsEntry>
+          </value>
+        </entry>
         <entry key="play-java-starter-example">
           <value>
             <ProjectSettingsEntry>
@@ -13,6 +20,7 @@
         <entry key="root">
           <value>
             <ProjectSettingsEntry>
+              <option name="sourceDir" value="D:\Repos\KoffieKillerApp\app" />
               <option name="confDir" value="D:\Repos\KoffieKillerApp\app" />
               <option name="templateImports">
                 <list>
