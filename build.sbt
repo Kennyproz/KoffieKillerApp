@@ -8,16 +8,11 @@ scalaVersion := "2.12.2"
 
 libraryDependencies += guice
 libraryDependencies += javaJpa
-val appDependencies = Seq(
-  "mysql" % "mysql-connector-java" % "5.1.45"
-)
-libraryDependencies += "com.h2database" % "h2" % "1.4.194"
-libraryDependencies += "org.hibernate" % "hibernate-core" % "5.2.5.Final"
 libraryDependencies ++= Seq(
-  javaJpa,
-  "org.hibernate" % "hibernate-entitymanager" % "5.2.5.Final" // replace by your jpa implementation
-
+  jdbc,
+  "mysql" % "mysql-connector-java" % "5.1.18"
 )
+libraryDependencies += "org.hibernate" % "hibernate-core" % "5.2.12.Final"
 
 libraryDependencies += javaWs % "test"
 
