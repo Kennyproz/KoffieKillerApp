@@ -1,0 +1,8 @@
+@(persons: List[Person])
+
+@main("Welcome to Play") {
+
+    @for(person <- persons) {
+        <p>@person.name</p>
+    }
+}

@@ -1,13 +1,15 @@
 package models;
 
 import play.db.jpa.JPAApi;
+import play.db.jpa.Transactional;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletionStage;
 import java.util.function.Function;
-import java.util.stream.Stream;
+
 
 import static java.util.concurrent.CompletableFuture.supplyAsync;
 
@@ -31,8 +33,13 @@ public class JPAPersonRepository implements PersonRepository {
     }
 
     @Override
-    public CompletionStage<Stream<Person>> list() {
-        return supplyAsync(() -> wrap(em -> list(em)), executionContext);
+    @Transactional
+    public List<Person> list() {
+
+        return jpaApi.withTransaction(() -> {
+            EntityManager em = jpaApi.em();
+            return em.createQuery("select p from Person p", Person.class).getResultList();
+        });
     }
 
     private <T> T wrap(Function<EntityManager, T> function) {
@@ -42,10 +49,5 @@ public class JPAPersonRepository implements PersonRepository {
     private Person insert(EntityManager em, Person person) {
         em.persist(person);
         return person;
-    }
-
-    private Stream<Person> list(EntityManager em) {
-        List<Person> persons = em.createQuery("select p from Person p", Person.class).getResultList();
-        return persons.stream();
     }
 }

@@ -8,6 +8,7 @@ import play.mvc.Controller;
 import play.mvc.Result;
 
 import javax.inject.Inject;
+import java.util.List;
 import java.util.concurrent.CompletionStage;
 import java.util.stream.Collectors;
 
@@ -37,15 +38,12 @@ public class PersonController extends Controller {
 
     public CompletionStage<Result> addPerson() {
         Person person = formFactory.form(Person.class).bindFromRequest().get();
-        return personRepository.add(person).thenApplyAsync(p -> {
-            return redirect(routes.PersonController.index());
-        }, ec.current());
+        return personRepository.add(person).thenApplyAsync(p -> redirect(routes.PersonController.index()), ec.current());
     }
 
-    public CompletionStage<Result> getPersons() {
-        return personRepository.list().thenApplyAsync(personStream -> {
-            return ok(toJson(personStream.collect(Collectors.toList())));
-        }, ec.current());
+    public Result getPersons() {
+        List<Person> result = personRepository.list();
+        return ok(views.html.persons.render(result));
     }
 
 }

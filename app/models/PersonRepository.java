@@ -1,7 +1,9 @@
 package models;
 
 import com.google.inject.ImplementedBy;
+import play.db.jpa.Transactional;
 
+import java.util.List;
 import java.util.concurrent.CompletionStage;
 import java.util.stream.Stream;
 
@@ -13,5 +15,6 @@ public interface PersonRepository {
 
     CompletionStage<Person> add(Person person);
 
-    CompletionStage<Stream<Person>> list();
+    @Transactional
+    List<Person> list();
 }
