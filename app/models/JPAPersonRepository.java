@@ -34,6 +34,16 @@ public class JPAPersonRepository implements PersonRepository {
 
     @Override
     @Transactional
+    public void delete(Long id) {
+        EntityManager em = jpaApi.em();
+        Person person = em.find(Person.class,id);
+        em.getTransaction().begin();
+        em.remove(person);
+        em.getTransaction().commit();
+    }
+
+    @Override
+    @Transactional
     public List<Person> list() {
 
         return jpaApi.withTransaction(() -> {

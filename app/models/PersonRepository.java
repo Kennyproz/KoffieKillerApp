@@ -17,4 +17,7 @@ public interface PersonRepository {
 
     @Transactional
     List<Person> list();
+
+
+    void delete(Long id);
 }
