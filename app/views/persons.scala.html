@@ -3,6 +3,14 @@
 @main("Welcome to Play") {
 
     @for(person <- persons) {
-        <p>@person.name</p>
+        <p>@person.name <a href="@routes.PersonController.deletePerson(person.id)">Delete</a></p>
+       <!-- <form method="POST" action="routes.PersonController.deletePerson(person.id)">
+            helper.CSRF.formField
+        <input type="text" name="name"/>
+        <button>Delete Person</button>
+        </form>-->
+
     }
+
+    <a href="@routes.PersonController.index()">Terug naar persoon toevoegen</a>
 }

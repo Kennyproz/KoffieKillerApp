@@ -6,6 +6,7 @@ import play.data.FormFactory;
 import play.libs.concurrent.HttpExecutionContext;
 import play.mvc.Controller;
 import play.mvc.Result;
+import views.html.persons;
 
 import javax.inject.Inject;
 import java.util.List;
@@ -44,6 +45,16 @@ public class PersonController extends Controller {
     public Result getPersons() {
         List<Person> result = personRepository.list();
         return ok(views.html.persons.render(result));
+    }
+
+    public Result deletePerson(Long id){
+        if (id != null){
+            personRepository.delete(id);
+        } else {
+            
+        }
+
+        return getPersons();
     }
 
 }
