@@ -48,12 +48,7 @@ public class PersonController extends Controller {
     }
 
     public Result deletePerson(Long id){
-        if (id != null){
-            personRepository.delete(id);
-        } else {
-            
-        }
-
+        personRepository.delete(id);
         return getPersons();
     }
 
