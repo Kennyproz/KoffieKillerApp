@@ -1,6 +1,6 @@
 import controllers.PersonController;
-import models.Person;
-import models.PersonRepository;
+import models.storage.Person;
+import models.database.PersonRepository;
 import org.junit.Test;
 import play.core.j.JavaContextComponents;
 import play.core.j.JavaHelpers;

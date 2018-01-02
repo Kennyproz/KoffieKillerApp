@@ -1,14 +1,52 @@
 @()
 
 @main("Welcome to Play") {
-    <script type='text/javascript' src='@routes.Assets.at("javascripts/index.js")'></script>
+    <script>
+
+        $(document).ready(function() {
+            getPeople();
+        });
+        function getPeople() {
+            $.get('/persons', function (data) {
+                console.log(data);
+                setPeopleContent(data);
+            });
+        }
+
+        function setPeopleContent(data) {
+            const container = $('#peopleContainer');
+            container.empty();
+
+            $.each(data, function(index, element) {
+               var li = $('<li>').text(element.name).appendTo(container);
+               var deleteButton = $('<button>').text(' delete').appendTo(li);
+                deleteButton.bind('click', function() {
+                    deletePerson(element.id);
+                })
+            });
+
+            if(data.length === 0) {
+                $('<p>').text("No people").appendTo(container);
+            }
+        }
+
+        function deletePerson(id) {
+            $.get('/deletePerson/' + id, function (data) {
+                getPeople();
+            });
+        }
+    </script>
 
     <ul id="persons"></ul>
 
+    <h1>Add person</h1>
     <form method="POST" action="@routes.PersonController.addPerson()">
         @helper.CSRF.formField
         <input type="text" name="name"/>
         <button>Add Person</button>
     </form>
-    <a href="@routes.PersonController.getPersons()">Naar alle personen</a>
+
+    <h1>All people</h1>
+    <button onclick="getPeople()">Reload people</button>
+    <div id="peopleContainer"></div>
 }

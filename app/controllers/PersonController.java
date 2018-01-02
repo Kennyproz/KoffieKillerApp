@@ -1,19 +1,17 @@
 package controllers;
 
-import models.Person;
-import models.PersonRepository;
+import com.fasterxml.jackson.databind.JsonNode;
+import models.storage.Person;
+import models.database.PersonRepository;
 import play.data.FormFactory;
+import play.libs.Json;
 import play.libs.concurrent.HttpExecutionContext;
 import play.mvc.Controller;
 import play.mvc.Result;
-import views.html.persons;
 
 import javax.inject.Inject;
 import java.util.List;
 import java.util.concurrent.CompletionStage;
-import java.util.stream.Collectors;
-
-import static play.libs.Json.toJson;
 
 /**
  * The controller keeps all database operations behind the repository, and uses
@@ -44,12 +42,12 @@ public class PersonController extends Controller {
 
     public Result getPersons() {
         List<Person> result = personRepository.list();
-        return ok(views.html.persons.render(result));
+        JsonNode node = Json.toJson(result);
+        return ok(node);
     }
 
     public Result deletePerson(Long id){
         personRepository.delete(id);
         return getPersons();
     }
-
 }

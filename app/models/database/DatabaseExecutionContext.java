@@ -1,4 +1,4 @@
-package models;
+package models.database;
 
 import akka.actor.ActorSystem;
 import scala.concurrent.ExecutionContext;

@@ -1,11 +1,11 @@
-package models;
+package models.database;
 
+import models.storage.Person;
 import play.db.jpa.JPAApi;
 import play.db.jpa.Transactional;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletionStage;
 import java.util.function.Function;

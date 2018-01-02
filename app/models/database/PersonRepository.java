@@ -1,11 +1,11 @@
-package models;
+package models.database;
 
 import com.google.inject.ImplementedBy;
+import models.storage.Person;
 import play.db.jpa.Transactional;
 
 import java.util.List;
 import java.util.concurrent.CompletionStage;
-import java.util.stream.Stream;
 
 /**
  * This interface provides a non-blocking API for possibly blocking operations.
@@ -17,7 +17,6 @@ public interface PersonRepository {
 
     @Transactional
     List<Person> list();
-
 
     void delete(Long id);
 }
