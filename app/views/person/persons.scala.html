@@ -1,7 +1,7 @@
 @import models.storage.Person
 @(persons: List[Person])
 
-@main("Welcome to Play") {
+@site.main("Welcome to Play") {
 
     @for(person <- persons) {
         <p>@person.name <a href="@routes.PersonController.deletePerson(person.id)">Delete</a></p>

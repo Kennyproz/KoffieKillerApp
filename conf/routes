@@ -6,7 +6,10 @@
 GET     /                           controllers.PersonController.index()
 POST    /person                     controllers.PersonController.addPerson()
 GET     /persons                    controllers.PersonController.getPersons()
-GET  /deletePerson/:id           controllers.PersonController.deletePerson(id: Long)
+GET     /deletePerson/:id           controllers.PersonController.deletePerson(id: Long)
+
+GET     /test/mainpage              controllers.TestController.getTestPage()
+GET     /test/otherpage             controllers.TestController.getTestPage2()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
