@@ -11,4 +11,8 @@ public class Person {
 	public Long id;
 
     public String name;
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

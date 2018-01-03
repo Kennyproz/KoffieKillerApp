@@ -19,4 +19,6 @@ public interface PersonRepository {
     List<Person> list();
 
     void delete(Long id);
+
+    void editPerson(Long id);
 }

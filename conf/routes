@@ -11,5 +11,7 @@ GET     /deletePerson/:id           controllers.PersonController.deletePerson(id
 GET     /test/mainpage              controllers.TestController.getTestPage()
 GET     /test/otherpage             controllers.TestController.getTestPage2()
 
+
+GET     /editPerson/:id             controllers.PersonController.editPerson(id: Long)
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

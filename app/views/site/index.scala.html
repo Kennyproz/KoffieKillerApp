@@ -23,6 +23,11 @@
                 deleteButton.bind('click', function() {
                     deletePerson(element.id);
                 })
+                var editButton = $('<button>').text(' Edit').appendTo(li);
+                editButton.bind('click', function() {
+                    editPerson(element.id);
+                })
+
             });
 
             if(data.length === 0) {
@@ -48,6 +53,13 @@
             const html = $.parseHTML(data);
             container.append(html);
         }
+
+        function editPerson(id) {
+            $.get('/editPerson/' + id, function (data) {
+                getPeople();
+            });
+        }
+
     </script>
 
     <nav>
