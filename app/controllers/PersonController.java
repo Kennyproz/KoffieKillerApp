@@ -50,4 +50,9 @@ public class PersonController extends Controller {
         personRepository.delete(id);
         return getPersons();
     }
+
+    public Result editPerson(Long id){
+        personRepository.editPerson(id);
+        return getPersons();
+    }
 }

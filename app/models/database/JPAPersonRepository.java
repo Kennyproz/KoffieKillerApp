@@ -33,6 +33,15 @@ public class JPAPersonRepository implements PersonRepository {
     }
 
     @Override
+    public void editPerson(Long id){
+        jpaApi.withTransaction(() -> {
+            EntityManager em = jpaApi.em();
+            Person person = em.find(Person.class,id);
+            person.setName("TestEditName");
+        });
+    }
+
+    @Override
     @Transactional
     public void delete(Long id) {
         jpaApi.withTransaction(() -> {
