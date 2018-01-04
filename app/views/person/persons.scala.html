@@ -20,7 +20,7 @@
     @for(person <- persons) {
 
         <p>@person.name  </p>
-        <input type="text" id="inputnameperson.id"/> <button onclick="editPerson(person.id, $('#inputnameperson.id').val())">Edit</button><button onclick="deletePerson(@person.id)">Delete</button>
+        <input type="text" id="inputname@person.id"/> <button onclick="editPerson(person.id, $('#inputnameperson.id').val())">Edit</button><button onclick="deletePerson(@person.id)">Delete</button>
             <!-- <input type="text" id="inputnameperson.id"/> <button onclick="editPerson(person.id, $('#inputnameperson.id').val())">Edit</button> -->
         }
         <!-- <form method="POST" action="routes.PersonController.deletePerson(person.id)">
