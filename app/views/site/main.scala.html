@@ -6,9 +6,31 @@
     <head>
         <title>@title</title>
         <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+        <link rel="stylesheet" href="@routes.Assets.at("stylesheets/main.css")">
         <script src="@routes.Assets.at("javascripts/jquery-2.2.0.min.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("javascripts/pageLoading.js")" type="text/javascript"></script>
     </head>
     <body>
-        @content
+        <div class="navbar">
+            <div class="dropdown" >
+                <button class="dropbtn">Test
+                <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <button onclick="getTestPage('/test/mainpage')">Test page</button>
+                    <button onclick="getTestPage('/test/otherpage')">Other test page</button>
+                </div>
+            </div>
+            <div class="dropdown" >
+                <button class="dropbtn">person
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <button onclick="getTestPage('/person/addperson')">Add person</button>
+                    <button onclick="getTestPage('/person/overview')">Overview</button>
+                </div>
+            </div>
+        </div>
+        <div id="pageContent"></div>
     </body>
 </html>

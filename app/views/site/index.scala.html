@@ -37,6 +37,7 @@
             }
         }
 
+
         function deletePerson(id) {
             $.get('/deletePerson/' + id, function (data) {
                 getPeople();
@@ -81,4 +82,5 @@
     <div id="peopleContainer"></div>
 
     <div id="pageContent"></div>
+
 }

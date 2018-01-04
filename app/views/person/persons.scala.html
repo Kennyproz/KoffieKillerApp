@@ -1,10 +1,16 @@
 @import models.storage.Person
 @(persons: List[Person])
 
-@site.main("Welcome to Play") {
-
+<script>
+        function deletePerson(id) {
+            $.get('/deletePerson/' + id, function (data) {
+                getPeople();
+            });
+        }
+</script>
+    <h1>All people</h1>
     @for(person <- persons) {
-        <p>@person.name <a href="@routes.PersonController.deletePerson(person.id)">Delete</a></p>
+    <p>@person.name   <button onclick="deletePerson(@person.id)">Delete</button></p>
        <!-- <form method="POST" action="routes.PersonController.deletePerson(person.id)">
             helper.CSRF.formField
         <input type="text" name="name"/>
@@ -14,4 +20,4 @@
     }
 
     <a href="@routes.PersonController.index()">Terug naar persoon toevoegen</a>
-}
+

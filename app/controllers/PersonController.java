@@ -40,15 +40,18 @@ public class PersonController extends Controller {
         return personRepository.add(person).thenApplyAsync(p -> redirect(routes.PersonController.index()), ec.current());
     }
 
+    public Result addPersonView() {
+        return ok(views.html.person.addPerson.render()).as("text/html");
+    }
+
     public Result getPersons() {
         List<Person> result = personRepository.list();
-        JsonNode node = Json.toJson(result);
-        return ok(node);
+        return ok(views.html.person.persons.render(result)).as("text/html");
     }
 
     public Result deletePerson(Long id){
         personRepository.delete(id);
-        return getPersons();
+        return ok();
     }
 
     public Result editPerson(Long id,String name){

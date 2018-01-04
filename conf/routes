@@ -5,7 +5,8 @@
 # Home page
 GET     /                           controllers.PersonController.index()
 POST    /person                     controllers.PersonController.addPerson()
-GET     /persons                    controllers.PersonController.getPersons()
+GET     /person/addperson           controllers.PersonController.addPersonView()
+GET     /person/overview            controllers.PersonController.getPersons()
 GET     /deletePerson/:id           controllers.PersonController.deletePerson(id: Long)
 
 GET     /test/mainpage              controllers.TestController.getTestPage()
