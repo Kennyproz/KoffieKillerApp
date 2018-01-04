@@ -13,6 +13,6 @@ GET     /test/mainpage              controllers.TestController.getTestPage()
 GET     /test/otherpage             controllers.TestController.getTestPage2()
 
 
-GET     /editPerson/:id             controllers.PersonController.editPerson(id: Long)
+GET     /editPerson/:id/:name       controllers.PersonController.editPerson(id: Long, name: String)
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
