@@ -51,8 +51,8 @@ public class PersonController extends Controller {
         return getPersons();
     }
 
-    public Result editPerson(Long id){
-        personRepository.editPerson(id);
+    public Result editPerson(Long id,String name){
+        personRepository.editPerson(id, name);
         return getPersons();
     }
 }

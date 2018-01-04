@@ -23,9 +23,10 @@
                 deleteButton.bind('click', function() {
                     deletePerson(element.id);
                 })
+                var newName = $("#nameinput").val();
                 var editButton = $('<button>').text(' Edit').appendTo(li);
                 editButton.bind('click', function() {
-                    editPerson(element.id);
+                    editPerson(element.id,newName);
                 })
 
             });
@@ -54,8 +55,8 @@
             container.append(html);
         }
 
-        function editPerson(id) {
-            $.get('/editPerson/' + id, function (data) {
+        function editPerson(id, newName) {
+            $.get('/editPerson/' + id + '/' + newName, function (data) {
                 getPeople();
             });
         }
@@ -70,7 +71,7 @@
     <h1>Add person</h1>
     <form method="POST" action="@routes.PersonController.addPerson()">
         @helper.CSRF.formField
-        <input type="text" name="name"/>
+        <input type="text" name="name" id="nameinput"/>
         <button>Add Person</button>
     </form>
 
