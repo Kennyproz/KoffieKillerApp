@@ -35,25 +35,6 @@
             }
         }
 
-        function deletePerson(id) {
-            $.get('/deletePerson/' + id, function (data) {
-                getPeople();
-            });
-        }
-
-        function getTestPage(url) {
-            $.get(url, function (data) {
-                setPageContent(data);
-            });
-        }
-
-        function setPageContent(data) {
-            const container = $('#pageContent');
-            container.empty();
-            const html = $.parseHTML(data);
-            container.append(html);
-        }
-
         function editPerson(id) {
             $.get('/editPerson/' + id, function (data) {
                 getPeople();
@@ -62,21 +43,4 @@
 
     </script>
 
-    <nav>
-        <button onclick="getTestPage('/test/mainpage')">Test page</button>
-        <button onclick="getTestPage('/test/otherpage')">Other test page</button>
-    </nav>
-
-    <h1>Add person</h1>
-    <form method="POST" action="@routes.PersonController.addPerson()">
-        @helper.CSRF.formField
-        <input type="text" name="name"/>
-        <button>Add Person</button>
-    </form>
-
-    <h1>All people</h1>
-    <button onclick="getPeople()">Reload people</button>
-    <div id="peopleContainer"></div>
-
-    <div id="pageContent"></div>
 }
