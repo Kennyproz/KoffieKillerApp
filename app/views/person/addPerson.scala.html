@@ -1,8 +1,8 @@
-
+<div class="container">
     <h1>Add person</h1>
     <form method="POST" action="@routes.PersonController.addPerson()">
         @helper.CSRF.formField
         <input type="text" name="name"/>
         <button>Add Person</button>
     </form>
-
+</div>

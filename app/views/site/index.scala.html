@@ -1,6 +1,6 @@
 @()
 
-@site.main("Welcome to Play") {
+@site.main("Welcome to KoffieTime") {
     <script>
 
         $(document).ready(function() {
@@ -57,11 +57,7 @@
             container.append(html);
         }
 
-        function editPerson(id, newName) {
-            $.get('/editPerson/' + id + '/' + newName, function (data) {
-                getPeople();
-            });
-        }
+
 
     </script>
 
@@ -69,7 +65,7 @@
         <button onclick="getTestPage('/test/mainpage')">Test page</button>
         <button onclick="getTestPage('/test/otherpage')">Other test page</button>
     </nav>
-
+<div class="container">
     <h1>Add person</h1>
     <form method="POST" action="@routes.PersonController.addPerson()">
         @helper.CSRF.formField
@@ -82,5 +78,5 @@
     <div id="peopleContainer"></div>
 
     <div id="pageContent"></div>
-
+</div>
 }
