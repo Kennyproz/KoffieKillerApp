@@ -2,9 +2,11 @@
     <h1>Login</h1>
     <form method="POST" action="@routes.PersonController.login()">
         @helper.CSRF.formField
-        <input type="text" name="username"/>
+        <label>Gebruikersnaam: </label>
+        <input type="text" name="username" placeholder="Gebruikersnaam"/>
         @helper.CSRF.formField
-        <input type="text" name="password"/>
-        <button>Add Person</button>
+        <label>Wachtwoord: </label>
+        <input type="text" name="password" placeholder="Wachtwoord"/>
+        <button>Inloggen</button>
     </form>
 </div>
