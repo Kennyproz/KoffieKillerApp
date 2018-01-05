@@ -1,5 +1,7 @@
 @import models.storage.Coffee
 @(coffees: List[Coffee])
+<head>
+    <script src="@routes.Assets.at("javascripts/coffeeContent.js")" type="text/javascript"></script></head>
 <script>
         function deleteCoffee(id) {
             $.get('/deleteCoffee/' + id, function (data) {

@@ -48,7 +48,7 @@ public class JPAPersonRepository implements PersonRepository {
             EntityManager em = jpaApi.em();
             Person person = em.find(Person.class,id);
             if(!name.isEmpty()){
-                person.setName(name);
+                person.setUsername(name);
             }
         });
     }
