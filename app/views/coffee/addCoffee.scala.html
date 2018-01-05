@@ -1,8 +1,9 @@
 <div class="container">
-    <h1>Add Coffee</h1>
+    <h1>Koffie Toevoegen</h1>
     <form method="POST" action="@routes.CoffeeController.addCoffee()">
         @helper.CSRF.formField
     <input type="text" name="name" placeholder="Koffie naam"/>
-    <button>Add Coffee</button>
+    <button>Toevoegen</button>
     </form>
+    <a href="#" onclick="getTestPage('/coffee/overview')">Naar alle koffie's</a>
 </div>

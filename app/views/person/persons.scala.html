@@ -20,16 +20,16 @@
 </script>
 <div class="container">
     @if(!persons.isEmpty){
-    <h1>All people</h1>
-    <p>Refresh the page to see changes.</p>
+    <h1>Alle gebruikers</h1>
+    <p>Herlaad de pagina om veranderingen te kunnen zien. <button onclick="getTestPage('/person/overview')">Pagina herladen</button></p>
     @for(person <- persons) {
         <p>@person.username
         <input type="text" id="inputname@person.id"/>
-        <button onclick="editPerson(@person.id, $('#inputname@person.id').val())">Edit</button>
-        <button onclick="deletePerson(@person.id)">Delete</button></p>
+        <button onclick="editPerson(@person.id, $('#inputname@person.id').val())">Wijzigen</button>
+        <button onclick="deletePerson(@person.id)">Verwijderen</button></p>
     }
-    <a href="@routes.PersonController.index()">Terug naar persoon toevoegen (werkt niet)</a>
+    <a href="#" onclick="getTestPage('/person/addperson')">Terug naar gebruiker toevoegen</a>
     } else {
-        <p>No persons found?</p>
+        <p>Geen gebruikers gevonden?</p>
     }
 </div>

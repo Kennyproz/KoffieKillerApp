@@ -1,11 +1,13 @@
 <script src="@routes.Assets.at("javascripts/peopleContent.js")" type="text/javascript"></script>
 <div class="container">
-    <h1>Add person</h1>
+    <h1>Gebruiker Toevoegen</h1>
     <form method="POST" action="@routes.PersonController.addPerson()">
         @helper.CSRF.formField
         <input type="text" name="username" placeholder="Gebruikersnaam"/>
         @helper.CSRF.formField
         <input type="text" name="password" placeholder="Wachtwoord"/>
-        <button>Add Person</button>
+        <button>Registreren</button>
     </form>
+
+    <a href="#" onclick="getTestPage('/person/overview')">Naar alle gebruikers</a>
 </div>
