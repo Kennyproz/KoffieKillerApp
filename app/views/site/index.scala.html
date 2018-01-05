@@ -26,7 +26,7 @@
 
                 var editButton = $('<button>').text(' Edit').appendTo(li);
                 editButton.bind('click', function() {
-                    var newName = $("#nameinput").val();
+                    var newName = $("#inputname/(element.id)").val();
                     editPerson(element.id,newName);
                 })
 
@@ -57,8 +57,11 @@
             container.append(html);
         }
 
-
-
+        function editPerson(id, newName) {
+            $.get('/editPerson/' + id + '/' + newName, function (data) {
+                getPeople();
+            });
+        }
     </script>
 
     <nav>
