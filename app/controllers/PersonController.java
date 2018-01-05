@@ -1,10 +1,8 @@
 package controllers;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import models.storage.Person;
-import models.database.PersonRepository;
+import models.database.Interfaces.PersonRepository;
 import play.data.FormFactory;
-import play.libs.Json;
 import play.libs.concurrent.HttpExecutionContext;
 import play.mvc.Controller;
 import play.mvc.Result;

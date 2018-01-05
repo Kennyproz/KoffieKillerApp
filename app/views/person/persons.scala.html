@@ -16,6 +16,7 @@
 
 </script>
 <div class="container">
+    @if(!persons.isEmpty){
     <h1>All people</h1>
     <p>Refresh the page to see changes.</p>
     @for(person <- persons) {
@@ -25,4 +26,7 @@
         <button onclick="deletePerson(@person.id)">Delete</button></p>
     }
     <a href="@routes.PersonController.index()">Terug naar persoon toevoegen (werkt niet)</a>
+    } else {
+        <p>No persons found?</p>
+    }
 </div>

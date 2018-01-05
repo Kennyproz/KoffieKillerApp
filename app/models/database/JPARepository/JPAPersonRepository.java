@@ -1,5 +1,7 @@
-package models.database;
+package models.database.JPARepository;
 
+import models.database.DatabaseExecutionContext;
+import models.database.Interfaces.PersonRepository;
 import models.storage.Person;
 import play.db.jpa.JPAApi;
 import play.db.jpa.Transactional;
@@ -13,7 +15,6 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 import java.util.Arrays;
-import java.util.Dictionary;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.CompletionStage;

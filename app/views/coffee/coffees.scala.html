@@ -1,0 +1,17 @@
+@import models.storage.Coffee
+@(coffees: List[Coffee])
+    <div class="container">
+        @if(!coffees.isEmpty) {
+        <h1>All Coffees</h1>
+          <p>Refresh the page to see changes.</p>
+            @for(coffee <- coffees) {
+                <p>@coffee.getName()
+                <input type="text" id="inputname@coffee.id"/>
+                <button onclick="editCoffee(@coffee.id, $('#inputname@coffee.id').val())">Edit</button>
+                <button onclick="deleteCoffee(@coffee.id)">Delete</button></p>
+            }
+            <a href="@routes.PersonController.index()">Terug naar persoon toevoegen (werkt niet)</a>
+        } else {
+            <p>Coffee's not hot, no Coffee found..</p>
+        }
+    </div>

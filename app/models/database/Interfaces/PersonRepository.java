@@ -1,6 +1,7 @@
-package models.database;
+package models.database.Interfaces;
 
 import com.google.inject.ImplementedBy;
+import models.database.JPARepository.JPAPersonRepository;
 import models.storage.Person;
 import play.db.jpa.Transactional;
 
