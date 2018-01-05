@@ -7,6 +7,8 @@ GET     /                           controllers.PersonController.index()
 POST    /person                     controllers.PersonController.addPerson()
 GET     /person/addperson           controllers.PersonController.addPersonView()
 GET     /person/overview            controllers.PersonController.getPersons()
+GET     /person/login               controllers.PersonController.loginView()
+POST    /person/logincheck          controllers.PersonController.login()
 GET     /deletePerson/:id           controllers.PersonController.deletePerson(id: Long)
 
 GET     /test/mainpage              controllers.TestController.getTestPage()
