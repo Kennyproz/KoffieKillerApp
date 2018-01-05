@@ -1,5 +1,19 @@
 @import models.storage.Coffee
 @(coffees: List[Coffee])
+<script>
+        function deleteCoffee(id) {
+            $.get('/deleteCoffee/' + id, function (data) {
+                getCoffee()();
+            });
+        }
+
+        function editCoffee(id, newName) {
+            $.get('/editCoffee/' + id + '/' + newName, function (data) {
+                getCoffee();
+            });
+        }
+
+</script>
     <div class="container">
         @if(!coffees.isEmpty) {
         <h1>All Coffees</h1>

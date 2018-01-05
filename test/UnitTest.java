@@ -58,7 +58,7 @@ public class UnitTest implements JavaHelpers {
 
     @Test
     public void checkTemplate() {
-        Content html = views.html.index.render();
+        Content html = views.html.site.index.render();
         assertThat(html.contentType()).isEqualTo("text/html");
         assertThat(contentAsString(html)).contains("Add Person");
     }
@@ -74,7 +74,7 @@ public class UnitTest implements JavaHelpers {
         PersonRepository repository = mock(PersonRepository.class);
         Person person = new Person();
         person.id = 1L;
-        person.name = "Steve";
+        person.username = "Steve";
         when(repository.add(any())).thenReturn(supplyAsync(() -> person));
 
         // Set up the request builder to reflect input
