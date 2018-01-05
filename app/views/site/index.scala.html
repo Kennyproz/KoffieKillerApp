@@ -1,69 +1,12 @@
 @()
 
 @site.main("KoffieApp") {
-    <script>
 
+    <script>
         $(document).ready(function() {
             getPeople();
         });
-        function getPeople() {
-            $.get('/persons', function (data) {
-                console.log(data);
-                setPeopleContent(data);
-            });
-        }
-
-        function setPeopleContent(data) {
-            const container = $('#peopleContainer');
-            container.empty();
-
-            $.each(data, function(index, element) {
-               var li = $('<li>').text(element.name).appendTo(container);
-               var deleteButton = $('<button>').text(' delete').appendTo(li);
-                deleteButton.bind('click', function() {
-                    deletePerson(element.id);
-                })
-
-                var editButton = $('<button>').text(' Edit').appendTo(li);
-                editButton.bind('click', function() {
-                    var newName = $("#inputname/(element.id)").val();
-                    editPerson(element.id,newName);
-                })
-
-            });
-
-            if(data.length === 0) {
-                $('<p>').text("No people").appendTo(container);
-            }
-        }
-
-
-        function deletePerson(id) {
-            $.get('/deletePerson/' + id, function (data) {
-                getPeople();
-            });
-        }
-
-        function getTestPage(url) {
-            $.get(url, function (data) {
-                setPageContent(data);
-            });
-        }
-
-        function setPageContent(data) {
-            const container = $('#pageContent');
-            container.empty();
-            const html = $.parseHTML(data);
-            container.append(html);
-        }
-
-        function editPerson(id, newName) {
-            $.get('/editPerson/' + id + '/' + newName, function (data) {
-                getPeople();
-            });
-        }
     </script>
-
     <nav>
         <button onclick="getTestPage('/test/mainpage')">Test page</button>
         <button onclick="getTestPage('/test/otherpage')">Other test page</button>
