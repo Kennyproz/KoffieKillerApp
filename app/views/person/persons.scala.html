@@ -17,18 +17,12 @@
 </script>
 <div class="container">
     <h1>All people</h1>
+    <p>Refresh the page to see changes.</p>
     @for(person <- persons) {
         <p>@person.username
-        <input type="text" id="inputname@person.id"/> <button onclick="editPerson(@person.id, $('#inputname@person.id').val())">Edit</button><button onclick="deletePerson(@person.id)">Delete</button></p>
-
-            <!-- <input type="text" id="inputnameperson.id"/> <button onclick="editPerson(person.id, $('#inputnameperson.id').val())">Edit</button> -->
-        }
-        <!-- <form method="POST" action="routes.PersonController.deletePerson(person.id)">
-            helper.CSRF.formField
-        <input type="text" name="name"/>
-        <button>Delete Person</button>
-        </form>
-        -->
-    <a href="@routes.PersonController.index()">Terug naar persoon toevoegen</a>
-
+        <input type="text" id="inputname@person.id"/>
+        <button onclick="editPerson(@person.id, $('#inputname@person.id').val())">Edit</button>
+        <button onclick="deletePerson(@person.id)">Delete</button></p>
+    }
+    <a href="@routes.PersonController.index()">Terug naar persoon toevoegen (werkt niet)</a>
 </div>
