@@ -1,10 +1,11 @@
 /* Navbar container */
 .navbar {
+    height: 75px;
     overflow: hidden;
-    background-color: #333;
+    background-color: #777;
     font-family: Arial;
-    padding-left: 45%;
-    padding-right: 30%;
+    padding-left: 3%;
+    padding-right: 10%;
 }
 
 /* Links inside the navbar */
@@ -25,12 +26,13 @@
 
 /* Dropdown button */
 .dropdown .dropbtn {
-    font-size: 16px;
+    font-size: x-large;
     border: none;
     outline: none;
     color: white;
     padding: 14px 16px;
     background-color: inherit;
+    height: 75px;
 }
 
 /* Add a red background color to navbar links on hover */
@@ -77,4 +79,17 @@
     margin-bottom: 20px;
     padding:20px;
     margin-left: 30%;
+}
+
+.logo{
+    width: 50px;
+    float: left;
+    padding-right: 40%;
+}
+.usernav
+{
+    float: right;
+}
+.firstnavitem {
+    margin-left: 45%;
 }

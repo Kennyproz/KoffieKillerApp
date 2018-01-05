@@ -14,7 +14,8 @@
     </head>
     <body>
         <div class="navbar">
-            <div class="dropdown" >
+            <a href="#"  onclick="getTestPage('/person/login')"><img src="@routes.Assets.at("images/coffee.png")" class="logo" alt="logo"></a>
+            <div class="dropdown firstnavitem" >
                 <button class="dropbtn">Test
                 <i class="fa fa-caret-down"></i>
                 </button>
@@ -24,22 +25,22 @@
                 </div>
             </div>
             <div class="dropdown" >
-                <button class="dropbtn">Gebruiker
-                    <i class="fa fa-caret-down"></i>
-                </button>
-                <div class="dropdown-content">
-                    <a onclick="getTestPage('/person/addperson')">Toevoegen</a>
-                    <a onclick="getTestPage('/person/overview')">Alle gebruikers</a>
-                    <a onclick="getTestPage('/person/login')">Login</a>
-                </div>
-            </div>
-            <div class="dropdown" >
-                <button class="dropbtn">Koffie
+                <button class="dropbtn coffeenav">Koffie
                     <i class="fa fa-caret-down"></i>
                 </button>
                 <div class="dropdown-content">
                     <a onclick="getTestPage('/coffee/addCoffee')">Koffie toevoegen</a>
                     <a onclick="getTestPage('/coffee/overview')">Alle Koffie's</a>
+                </div>
+            </div>
+            <div class="dropdown usernav" >
+                <button class="dropbtn ">Gebruiker
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a onclick="getTestPage('/person/addperson')">Toevoegen</a>
+                    <a onclick="getTestPage('/person/overview')">Alle gebruikers</a>
+                    <a onclick="getTestPage('/person/login')">Inloggen</a>
                 </div>
             </div>
         </div>
