@@ -1,6 +1,6 @@
 <div class="container">
-    <h1>Add person</h1>
-    <form method="POST" action="@routes.PersonController.addPerson()">
+    <h1>Login</h1>
+    <form method="POST" action="@routes.PersonController.login()">
         @helper.CSRF.formField
         <input type="text" name="username"/>
         @helper.CSRF.formField

@@ -58,4 +58,20 @@ public class PersonController extends Controller {
         personRepository.editPerson(id, name);
         return getPersons();
     }
+
+    public Result loginView() {
+        return ok(views.html.person.login.render()).as("text/html");
+    }
+
+    public Result login() {
+        Person tempPerson = formFactory.form(Person.class).bindFromRequest().get();
+        boolean result = personRepository.login(tempPerson.getUsername(), tempPerson.getPassword());
+        if(result) {
+            System.out.println("Login succesful");
+        } else {
+            System.out.println("The thing went skraaaaa, you fucked up");
+        }
+
+        return ok();
+    }
 }
