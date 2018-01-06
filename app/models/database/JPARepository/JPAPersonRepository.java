@@ -62,6 +62,16 @@ public class JPAPersonRepository implements PersonRepository {
     }
 
     @Override
+    public Person getPersonByUsername(String username) {
+        return jpaApi.withTransaction(() -> {
+            EntityManager em = jpaApi.em();
+            TypedQuery<Person> query = em.createQuery("select p from Person p where username = :username", Person.class);
+            return query.setParameter("username", username).getSingleResult();
+
+        });
+    }
+
+    @Override
     @Transactional
     public void delete(Long id) {
         jpaApi.withTransaction(() -> {

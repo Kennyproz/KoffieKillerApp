@@ -24,4 +24,6 @@ public interface PersonRepository {
     void editPerson(Long id,String name);
 
     boolean login(String username, char[] password);
+
+    Person getPersonByUsername(String username);
 }

@@ -66,6 +66,7 @@ public class PersonController extends Controller {
         boolean result = personRepository.login(tempPerson.getUsername(), tempPerson.getPassword());
         if(result) {
             System.out.println("Login succesful");
+            ctx().session().put("user", tempPerson.username);
         } else {
             System.out.println("The thing went skraaaaa, you fucked up");
         }

@@ -11,7 +11,7 @@ public class Main {
     public static void main(String[] args) {
         try {
 
-            URL url = new URL("http://localhost:9000/persons");
+            URL url = new URL("http://localhost:9000/test/persons");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
             conn.setRequestProperty("Accept", "application/json");

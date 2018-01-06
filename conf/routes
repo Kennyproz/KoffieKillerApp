@@ -5,6 +5,7 @@
 # Home page
 GET     /test/mainpage              controllers.TestController.getTestPage()
 GET     /test/otherpage             controllers.TestController.getTestPage2()
+GET     /test/persons                controllers.TestController.TestPersons()
 
 #Person
 GET     /                           controllers.PersonController.index()

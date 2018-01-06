@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table
+@Table (name = "group")
 public class Group {
 
     @Id
@@ -16,7 +16,6 @@ public class Group {
     private char[] password;
     private int peopleLimit;
 
-    @ElementCollection(targetClass=Person.class)
     @ManyToMany(mappedBy="groups")
     private List<Person> members;
 
@@ -25,6 +24,9 @@ public class Group {
         this.password = password;
         this.peopleLimit = peopleLimit;
         members = new ArrayList<>();
+    }
+
+    public Group() {
     }
 
     public String getName() {

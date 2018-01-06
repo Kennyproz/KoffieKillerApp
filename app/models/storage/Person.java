@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table
+@Table(name = "person")
 public class Person {
 
     @Id
@@ -18,7 +18,7 @@ public class Person {
     private byte[] salt;
     private byte[] hashedPassword;
 
-    @ElementCollection(targetClass=Group.class)
+    @ManyToMany
     private List<Group> groups;
 
     public Person() {}
@@ -27,10 +27,6 @@ public class Person {
         this.username = username;
         this.password = password;
         groups = new ArrayList<>();
-    }
-
-    public void setName(String username) {
-        this.username = username;
     }
 
     public char[] getPassword() {
@@ -71,5 +67,9 @@ public class Person {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public Long getId() {
+        return id;
     }
 }

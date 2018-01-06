@@ -3,7 +3,7 @@ package models.storage;
 import javax.persistence.*;
 
 @Entity
-@Table
+@Table (name = "coffee")
 public class Coffee {
 
     @Id
