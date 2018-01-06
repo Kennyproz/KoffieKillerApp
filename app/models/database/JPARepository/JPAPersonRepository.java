@@ -99,13 +99,13 @@ public class JPAPersonRepository implements PersonRepository {
         TypedQuery<Person> query = em.createQuery("select p from Person p where username = :username", Person.class);
         Person personToLogin = query.setParameter("username", username).getSingleResult();
 
-        byte[] passwordToCheck = hash(password, personToLogin.getSalt(), 1000, 265);
+        byte[] passwordToCheck = hash(password, personToLogin.getSalt(), 1000, 256);
 
         return Arrays.equals(passwordToCheck, personToLogin.getHashedPassword());
     }
 
     private byte[] getNextSalt() {
-        byte[] salt = new byte[128];
+        byte[] salt = new byte[16];
         Random random = new SecureRandom();
         random.nextBytes(salt);
         return salt;
