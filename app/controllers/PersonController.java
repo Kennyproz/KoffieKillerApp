@@ -65,7 +65,7 @@ public class PersonController extends Controller {
         Person tempPerson = formFactory.form(Person.class).bindFromRequest().get();
         boolean result = personRepository.login(tempPerson.getUsername(), tempPerson.getPassword());
         if(result) {
-            System.out.println("Login succesful");
+            System.out.println("Login successful");
             ctx().session().put("user", tempPerson.username);
         } else {
             System.out.println("The thing went skraaaaa, you fucked up");

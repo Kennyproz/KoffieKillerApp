@@ -93,3 +93,8 @@
 .firstnavitem {
     margin-left: 45%;
 }
+.body {
+    background-color: aliceblue;
+    margin-left: 0px;
+    margin-right: 0px;
+}
