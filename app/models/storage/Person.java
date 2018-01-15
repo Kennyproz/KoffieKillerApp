@@ -19,7 +19,7 @@ public class Person {
     private byte[] hashedPassword;
 
     @ManyToMany
-    private List<Group> groups;
+    private List<Party> groups;
 
     public Person() {}
 
@@ -37,11 +37,11 @@ public class Person {
         this.password = password;
     }
 
-    public List<Group> getGroups() {
+    public List<Party> getGroups() {
         return groups;
     }
 
-    public void setGroups(List<Group> groups) {
+    public void setGroups(List<Party> groups) {
         this.groups = groups;
     }
 

@@ -5,28 +5,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table (name = "group")
-public class Group {
+@Table
+public class Party {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     public Long id;
 
     private String name;
-    private char[] password;
     private int peopleLimit;
 
-    @ManyToMany(mappedBy="groups")
+    @ManyToMany(mappedBy = "groups")
     private List<Person> members;
 
-    public Group(String name, char[] password, int peopleLimit) {
-        this.name = name;
-        this.password = password;
-        this.peopleLimit = peopleLimit;
+    public Party() {
         members = new ArrayList<>();
     }
 
-    public Group() {
+    public Party(String name, int peopleLimit) {
+        members = new ArrayList<>();
+        this.name = name;
+        this.peopleLimit = peopleLimit;
     }
 
     public String getName() {
@@ -35,14 +34,6 @@ public class Group {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public char[] getPassword() {
-        return password;
-    }
-
-    public void setPassword(char[] password) {
-        this.password = password;
     }
 
     public int getPeopleLimit() {

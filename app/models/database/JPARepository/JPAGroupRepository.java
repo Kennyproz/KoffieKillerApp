@@ -2,8 +2,7 @@ package models.database.JPARepository;
 
 import models.database.DatabaseExecutionContext;
 import models.database.Interfaces.GroupRepository;
-import models.storage.Coffee;
-import models.storage.Group;
+import models.storage.Party;
 import play.db.jpa.JPAApi;
 
 import javax.persistence.EntityManager;
@@ -23,16 +22,16 @@ public class JPAGroupRepository implements GroupRepository {
     }
 
     @Override
-    public CompletionStage<Group> add(Group group) {
-        return supplyAsync(() -> wrap(em -> insert(em, group)), executionContext);
+    public CompletionStage<Party> add(Party party) {
+        return supplyAsync(() -> wrap(em -> insert(em, party)), executionContext);
     }
 
     private <T> T wrap(Function<EntityManager, T> function) {
         return jpaApi.withTransaction(function);
     }
 
-    private Group insert(EntityManager em, Group group) {
-        em.persist(group);
-        return group;
+    private Party insert(EntityManager em, Party party) {
+        em.persist(party);
+        return party;
     }
 }

@@ -3,7 +3,7 @@ package controllers;
 import models.database.Interfaces.CoffeeRepository;
 import models.database.Interfaces.GroupRepository;
 import models.database.JPARepository.JPAGroupRepository;
-import models.storage.Group;
+import models.storage.Party;
 import play.data.FormFactory;
 import play.libs.concurrent.HttpExecutionContext;
 import play.mvc.Controller;
@@ -26,8 +26,8 @@ public class GroupController extends Controller {
     }
 
     public CompletionStage<Result> add() {
-        Group coffee = formFactory.form(Group.class).bindFromRequest().get();
-        return groupRepository.add(coffee).thenApplyAsync(p -> redirect(routes.CoffeeController.index()), ec.current());
+        Party party = formFactory.form(Party.class).bindFromRequest().get();
+        return groupRepository.add(party).thenApplyAsync(p -> redirect(routes.CoffeeController.index()), ec.current());
 
     }
 
