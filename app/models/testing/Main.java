@@ -1,5 +1,7 @@
 package models.testing;
 
+import models.storage.CoffeeEncryptor;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -28,6 +30,8 @@ public class Main {
             System.out.println("Output from Server .... \n");
             while ((output = br.readLine()) != null) {
                 System.out.println(output);
+                String decrypted = CoffeeEncryptor.symmetricDecrypt(output, "XMzDdG4D03CKm2IxIWQw7g==");
+                System.out.println(decrypted);
             }
 
             conn.disconnect();
