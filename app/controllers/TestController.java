@@ -2,6 +2,7 @@ package controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import models.database.Interfaces.PersonRepository;
+import models.storage.CoffeeEncryptor;
 import models.storage.Person;
 import play.libs.Json;
 import play.libs.concurrent.HttpExecutionContext;
@@ -9,6 +10,8 @@ import play.mvc.Controller;
 import play.mvc.Result;
 
 import javax.inject.Inject;
+import java.io.ByteArrayOutputStream;
+import java.io.ObjectOutputStream;
 import java.util.List;
 
 public class TestController extends Controller {
@@ -33,7 +36,19 @@ public class TestController extends Controller {
 
     public Result TestPersons() {
         List<Person> result = personRepository.list();
-        JsonNode node = Json.toJson(result);
-        return ok(node);
+        String key = "XMzDdG4D03CKm2IxIWQw7g==";
+        String test = "IWantToBeEncrypted";
+
+
+        try {
+
+            String encrypted = CoffeeEncryptor.symmetricEncrypt(test, key);
+            JsonNode node = Json.toJson(encrypted);
+            return ok(node);
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 }
