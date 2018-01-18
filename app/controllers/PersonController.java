@@ -78,4 +78,10 @@ public class PersonController extends Controller {
         List<Person> result = personRepository.list();
         return ok(views.html.message.chat.render(result));
     }
+
+    public Result sendMsg(){
+
+
+        return ok(views.html.message.chat.render(result));
+    }
 }
