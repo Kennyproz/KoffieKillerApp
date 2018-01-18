@@ -1,4 +1,5 @@
 import controllers.PersonController;
+import models.database.Interfaces.MessageRepository;
 import models.storage.Person;
 import models.database.Interfaces.PersonRepository;
 import org.junit.Test;
@@ -48,9 +49,10 @@ public class UnitTest implements JavaHelpers {
         Http.Context.current.set(createJavaContext(tokenRequest.build()._underlyingRequest(), contextComponents));
 
         PersonRepository repository = mock(PersonRepository.class);
+        MessageRepository messageRepository = mock(MessageRepository.class);
         FormFactory formFactory = mock(FormFactory.class);
         HttpExecutionContext ec = new HttpExecutionContext(ForkJoinPool.commonPool());
-        final PersonController controller = new PersonController(formFactory, repository, ec);
+        final PersonController controller = new PersonController(formFactory, repository, ec,messageRepository);
         final Result result = controller.index();
 
         assertThat(result.status()).isEqualTo(OK);
@@ -72,6 +74,7 @@ public class UnitTest implements JavaHelpers {
 
         // Don't need to be this involved in setting up the mock, but for demo it works:
         PersonRepository repository = mock(PersonRepository.class);
+        MessageRepository messageRepository = mock(MessageRepository.class);
         Person person = new Person();
         person.id = 1L;
         person.username = "Steve";
@@ -87,7 +90,7 @@ public class UnitTest implements JavaHelpers {
             HttpExecutionContext ec = new HttpExecutionContext(ForkJoinPool.commonPool());
 
             // Create controller and call method under test:
-            final PersonController controller = new PersonController(formFactory, repository, ec);
+            final PersonController controller = new PersonController(formFactory, repository, ec,messageRepository);
             return controller.addPerson();
         });
 

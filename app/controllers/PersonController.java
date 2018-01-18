@@ -1,14 +1,19 @@
 package controllers;
 
+import models.database.Interfaces.MessageRepository;
 import models.storage.Person;
 import models.database.Interfaces.PersonRepository;
+import models.storage.PrivateMessage;
+import play.data.Form;
 import play.data.FormFactory;
 import play.libs.concurrent.HttpExecutionContext;
 import play.mvc.Controller;
 import play.mvc.Result;
 
 import javax.inject.Inject;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.CompletionStage;
 
 /**
@@ -18,14 +23,18 @@ import java.util.concurrent.CompletionStage;
  */
 public class PersonController extends Controller {
 
+    private final Form<PrivateMessage> form;
     private final FormFactory formFactory;
     private final PersonRepository personRepository;
     private final HttpExecutionContext ec;
+    private final MessageRepository messageRepository;
 
     @Inject
-    public PersonController(FormFactory formFactory, PersonRepository personRepository, HttpExecutionContext ec) {
+    public PersonController(FormFactory formFactory, PersonRepository personRepository, HttpExecutionContext ec, MessageRepository messageRepository) {
         this.formFactory = formFactory;
+        this.form = formFactory.form(PrivateMessage.class);
         this.personRepository = personRepository;
+        this.messageRepository = messageRepository;
         this.ec = ec;
     }
 
@@ -76,6 +85,26 @@ public class PersonController extends Controller {
 
     public Result chat(){
         List<Person> result = personRepository.list();
-        return ok(views.html.message.chat.render(result));
+        PrivateMessage message = new PrivateMessage();
+        Map<String, String> personMap = mapPerson(result);
+        return ok(views.html.message.chat.render(result,message,form,personMap));
+    }
+
+    public Result sendMsg(){
+        Form<PrivateMessage> filledForm = form.bindFromRequest();
+        PrivateMessage privateMessage = filledForm.get();
+        messageRepository.add(privateMessage);
+        return ok(views.html.message.mess.render(privateMessage));
+
+    }
+
+    private Map<String, String> mapPerson(List<Person> persons){
+
+        Map<String,String> personMap = new HashMap<>();
+        for(Person p : persons){
+            personMap.put(p.getId().toString(),p.getUsername());
+        }
+        return personMap;
+
     }
 }

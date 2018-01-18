@@ -1,5 +1,7 @@
 package models.storage;
 
+import models.database.Interfaces.MessageRepository;
+
 import javax.persistence.*;
 
 @Entity
@@ -26,6 +28,13 @@ public class PrivateMessage {
     public PrivateMessage() {
     }
 
+    public PrivateMessage(Person sender, Person recipient, String message){
+        this.sender = sender;
+        this.recipient = recipient;
+        this.encryptedMessage = message;
+        this.encryptKey = "1";
+
+    }
 
     public long getId() {
         return id;
