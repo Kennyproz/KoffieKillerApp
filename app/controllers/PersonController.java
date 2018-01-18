@@ -73,4 +73,9 @@ public class PersonController extends Controller {
 
         return ok();
     }
+
+    public Result chat(){
+        List<Person> result = personRepository.list();
+        return ok(views.html.message.chat.render(result));
+    }
 }

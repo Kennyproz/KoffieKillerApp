@@ -25,5 +25,8 @@ GET     /coffee/overview            controllers.CoffeeController.getCoffees()
 GET     /deleteCoffee/:id           controllers.CoffeeController.deleteCoffee(id: Long)
 GET     /editCoffee/:id/:name       controllers.CoffeeController.editCoffee(id: Long, name: String)
 
+#Chat
+GET     /message/chat               controllers.PersonController.chat()
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
