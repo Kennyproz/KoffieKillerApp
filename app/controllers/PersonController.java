@@ -1,9 +1,11 @@
 package controllers;
 
 import models.database.Interfaces.MessageRepository;
+import models.storage.CoffeeEncryptor;
 import models.storage.Person;
 import models.database.Interfaces.PersonRepository;
 import models.storage.PrivateMessage;
+import play.data.DynamicForm;
 import play.data.Form;
 import play.data.FormFactory;
 import play.libs.concurrent.HttpExecutionContext;
@@ -28,6 +30,7 @@ public class PersonController extends Controller {
     private final PersonRepository personRepository;
     private final HttpExecutionContext ec;
     private final MessageRepository messageRepository;
+    private DynamicForm messageForm;
 
     @Inject
     public PersonController(FormFactory formFactory, PersonRepository personRepository, HttpExecutionContext ec, MessageRepository messageRepository) {
@@ -36,6 +39,7 @@ public class PersonController extends Controller {
         this.personRepository = personRepository;
         this.messageRepository = messageRepository;
         this.ec = ec;
+        messageForm = formFactory.form();
     }
 
     public Result index() {
@@ -106,5 +110,21 @@ public class PersonController extends Controller {
         }
         return personMap;
 
+    }
+
+
+    public Result submit()  {
+        messageForm = formFactory.form().bindFromRequest();
+        String senderUsername = messageForm.get("sender");
+        String recieverUsername = messageForm.get("recipient");
+        String message = messageForm.get("message");
+
+        Person sender = personRepository.getPersonByUsername(senderUsername);
+        Person reciever = personRepository.getPersonByUsername(recieverUsername);
+
+        message = CoffeeEncryptor.symmetricEncrypt(message, "XMzDdG4D03CKm2IxIWQw7g==");
+        PrivateMessage privateMessage = new PrivateMessage(sender,reciever,message);
+        messageRepository.add(privateMessage);
+        return ok(views.html.message.mess.render(privateMessage));
     }
 }

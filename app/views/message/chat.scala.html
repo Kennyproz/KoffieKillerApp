@@ -1,6 +1,7 @@
 @import models.storage.Person
 @import models.storage.PrivateMessage
-@import helper._
+
+@import b4.vertical.fieldConstructor
 @(persons: List[Person],message: PrivateMessage, form: Form[PrivateMessage], personsstring: Map[String,String])
 <head>
     <script src="@routes.Assets.at("javascripts/coffeeContent.js")" type="text/javascript"></script>
@@ -15,13 +16,14 @@
         <div class="col-lg-12">
             @helper.form(routes.PersonController.sendMsg()){
                 @helper.CSRF.formField
-
                 @helper.select(form("sender"), options(personsstring) ,'_label -> "sender")
                 @helper.inputText(form("encryptedMessage"))
                 @helper.select(form("recipient"), options(personsstring),'_label -> "reciever")
                 @helper.select(
                     form("recipient"),
                     options(personsstring),'_label -> "recipient")
+
+                @b4.submit('class -> "btn btn-primary") {Verstuur}
                 )
                 <button value="submit">send</button>
             }

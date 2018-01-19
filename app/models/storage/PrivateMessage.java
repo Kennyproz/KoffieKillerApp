@@ -32,7 +32,7 @@ public class PrivateMessage {
         this.sender = sender;
         this.recipient = recipient;
         this.encryptedMessage = message;
-        this.encryptKey = "1";
+        this.encryptKey = "XMzDdG4D03CKm2IxIWQw7g==";
 
     }
 
