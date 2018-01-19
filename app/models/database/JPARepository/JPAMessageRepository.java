@@ -2,6 +2,7 @@ package models.database.JPARepository;
 
 import models.database.DatabaseExecutionContext;
 import models.database.Interfaces.MessageRepository;
+import models.storage.Person;
 import models.storage.PrivateMessage;
 import play.db.jpa.JPAApi;
 import play.db.jpa.Transactional;
@@ -33,11 +34,11 @@ public class JPAMessageRepository implements MessageRepository {
 
     @Override
     @Transactional
-    public List<PrivateMessage> getMessagesForUser(Long personId) {
+    public List<PrivateMessage> getMessagesForUser(Person person) {
             return jpaApi.withTransaction(() -> {
                 EntityManager em = jpaApi.em();
-                TypedQuery<PrivateMessage> query = em.createQuery("select m from Messages m where m.recipient = :recipient", PrivateMessage.class);
-                return query.setParameter("recipient", personId).getResultList();
+                TypedQuery<PrivateMessage> query = em.createQuery("select m from PrivateMessage m where m.recipient = :recipient", PrivateMessage.class);
+                return query.setParameter("recipient", person).getResultList();
             });
     }
 

@@ -1,5 +1,6 @@
 package controllers;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import models.database.Interfaces.MessageRepository;
 import models.storage.CoffeeEncryptor;
 import models.storage.Person;
@@ -8,6 +9,7 @@ import models.storage.PrivateMessage;
 import play.data.DynamicForm;
 import play.data.Form;
 import play.data.FormFactory;
+import play.libs.Json;
 import play.libs.concurrent.HttpExecutionContext;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -118,5 +120,15 @@ public class PersonController extends Controller {
         PrivateMessage privateMessage = new PrivateMessage(sender,reciever,message);
         messageRepository.add(privateMessage);
         return ok(views.html.message.mess.render(privateMessage));
+    }
+
+    public Result getMessages(long id) {
+        Person person = personRepository.getPersonById(id);
+
+        List<PrivateMessage> result = messageRepository.getMessagesForUser(person);
+
+        JsonNode node = Json.toJson(result);
+
+        return ok(node);
     }
 }
