@@ -94,14 +94,6 @@ public class PersonController extends Controller {
         return ok(views.html.message.chat.render(result,message,form,personMap));
     }
 
-    public Result sendMsg(){
-        Form<PrivateMessage> filledForm = form.bindFromRequest();
-        PrivateMessage privateMessage = filledForm.get();
-        messageRepository.add(privateMessage);
-        return ok(views.html.message.mess.render(privateMessage));
-
-    }
-
     private Map<String, String> mapPerson(List<Person> persons){
 
         Map<String,String> personMap = new HashMap<>();
@@ -113,14 +105,14 @@ public class PersonController extends Controller {
     }
 
 
-    public Result submit()  {
+    public Result sendMsg()  {
         messageForm = formFactory.form().bindFromRequest();
-        String senderUsername = messageForm.get("sender");
-        String recieverUsername = messageForm.get("recipient");
+        String sender1d = messageForm.get("sender");
+        String recipientId = messageForm.get("recipient");
         String message = messageForm.get("message");
 
-        Person sender = personRepository.getPersonByUsername(senderUsername);
-        Person reciever = personRepository.getPersonByUsername(recieverUsername);
+        Person sender = personRepository.getPersonById( Long.parseLong(sender1d));
+        Person reciever = personRepository.getPersonById(Long.parseLong(recipientId));
 
         message = CoffeeEncryptor.symmetricEncrypt(message, "XMzDdG4D03CKm2IxIWQw7g==");
         PrivateMessage privateMessage = new PrivateMessage(sender,reciever,message);

@@ -26,4 +26,6 @@ public interface PersonRepository {
     boolean login(String username, char[] password);
 
     Person getPersonByUsername(String username);
+
+    Person getPersonById(Long id);
 }

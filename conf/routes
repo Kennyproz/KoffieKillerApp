@@ -27,7 +27,7 @@ GET     /editCoffee/:id/:name       controllers.CoffeeController.editCoffee(id: 
 
 #Chat
 GET     /message/chat               controllers.PersonController.chat()
-GET     /message/mess               controllers.PersonController.sendMsg()
+POST    /message/mess               controllers.PersonController.sendMsg()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

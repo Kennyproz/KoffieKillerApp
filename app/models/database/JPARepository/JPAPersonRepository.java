@@ -71,6 +71,17 @@ public class JPAPersonRepository implements PersonRepository {
         });
     }
 
+
+    @Override
+    public Person getPersonById(Long id) {
+        return jpaApi.withTransaction(() -> {
+            EntityManager em = jpaApi.em();
+            TypedQuery<Person> query = em.createQuery("select p from Person p where id = :id", Person.class);
+            return query.setParameter("id", id).getSingleResult();
+
+        });
+    }
+
     @Override
     @Transactional
     public void delete(Long id) {
